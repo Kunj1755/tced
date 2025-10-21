@@ -18,7 +18,7 @@ export default function DrawPanel({ activeDrawTool, onDrawToolChange }) {
   const [selectedFeature, setSelectedFeature] = useState(null);
   const [comment, setComment] = useState('');
 
-  const handleToolClick = (toolId) => {
+  const handleToolClick = toolId => {
     onDrawToolChange(toolId);
     setSelectedFeature(null);
     setComment('');
@@ -44,7 +44,7 @@ export default function DrawPanel({ activeDrawTool, onDrawToolChange }) {
     console.log('Saving drawing to GeoServer:', newFeature);
   };
 
-  const handleSelectFeature = (feature) => {
+  const handleSelectFeature = feature => {
     setSelectedFeature(feature);
     setComment(feature.comment);
     onDrawToolChange('select');
@@ -77,10 +77,10 @@ export default function DrawPanel({ activeDrawTool, onDrawToolChange }) {
 
       {/* Drawing Tools - Compact Row */}
       <div className="flex items-center gap-1.5 mb-3">
-        {drawTools.map((tool) => {
+        {drawTools.map(tool => {
           const Icon = tool.icon;
           const isActive = activeDrawTool === tool.id;
-          
+
           return (
             <div key={tool.id} className="flex flex-col items-center flex-1">
               <IconButton
@@ -97,8 +97,7 @@ export default function DrawPanel({ activeDrawTool, onDrawToolChange }) {
                     color: isActive ? 'white' : '#1e293b',
                   },
                 }}
-                aria-label={tool.label}
-              >
+                aria-label={tool.label}>
                 <Icon className="h-5 w-5" />
               </IconButton>
               <span className="text-xs text-slate-600 mt-0.5">{tool.label}</span>
@@ -116,8 +115,7 @@ export default function DrawPanel({ activeDrawTool, onDrawToolChange }) {
           size="small"
           color="error"
           startIcon={<Trash2 className="h-4 w-4" />}
-          sx={{ mb: 2 }}
-        >
+          sx={{ mb: 2 }}>
           Clear All Drawings
         </Button>
       )}
@@ -130,11 +128,15 @@ export default function DrawPanel({ activeDrawTool, onDrawToolChange }) {
           <Alert severity="info" sx={{ py: 0.5 }}>
             Draw on map, add comment, then save
           </Alert>
-          
+
           <TextField
             label="Comment"
             value={comment}
-            onChange={(e) => setComment(e.target.value)}
+            InputLabelProps={{
+              // ← ADDED
+              shrink: true, // ← ADDED
+            }}
+            onChange={e => setComment(e.target.value)}
             placeholder="Add a comment for this drawing"
             fullWidth
             multiline
@@ -150,8 +152,7 @@ export default function DrawPanel({ activeDrawTool, onDrawToolChange }) {
             size="small"
             disabled={!comment.trim()}
             sx={{ bgcolor: '#38a169', '&:hover': { bgcolor: '#2f855a' } }}
-            startIcon={<Save className="h-4 w-4" />}
-          >
+            startIcon={<Save className="h-4 w-4" />}>
             Save to GeoServer
           </Button>
         </div>
@@ -175,7 +176,9 @@ export default function DrawPanel({ activeDrawTool, onDrawToolChange }) {
             </div>
             <div className="flex justify-between text-sm">
               <span className="text-slate-600">Created:</span>
-              <span className="text-slate-900">{new Date(selectedFeature.createdAt).toLocaleDateString()}</span>
+              <span className="text-slate-900">
+                {new Date(selectedFeature.createdAt).toLocaleDateString()}
+              </span>
             </div>
           </div>
 
@@ -195,27 +198,27 @@ export default function DrawPanel({ activeDrawTool, onDrawToolChange }) {
             fullWidth
             size="small"
             color="error"
-            startIcon={<Trash2 className="h-4 w-4" />}
-          >
+            startIcon={<Trash2 className="h-4 w-4" />}>
             Delete Redlining
           </Button>
         </div>
       )}
 
       {/* Saved Drawings List */}
-      {drawnFeatures.length > 0 && !selectedFeature && (
+      {drawnFeatures.length > 0 && (
         <div className="flex-1 overflow-y-auto">
           <h4 className="text-sm text-slate-900 mb-2">Saved Drawings ({drawnFeatures.length})</h4>
           <div className="space-y-1.5">
-            {drawnFeatures.map((feature) => (
+            {drawnFeatures.map(feature => (
               <div
                 key={feature.id}
                 onClick={() => handleSelectFeature(feature)}
-                className="p-2 bg-white border border-slate-200 rounded-lg cursor-pointer hover:border-slate-300 hover:shadow-sm transition-all"
-              >
+                className="p-2 bg-white border border-slate-200 rounded-lg cursor-pointer hover:border-slate-300 hover:shadow-sm transition-all">
                 <div className="flex justify-between items-start text-xs">
                   <span className="text-slate-900 capitalize font-medium">{feature.type}</span>
-                  <span className="text-slate-500">{new Date(feature.createdAt).toLocaleDateString()}</span>
+                  <span className="text-slate-500">
+                    {new Date(feature.createdAt).toLocaleDateString()}
+                  </span>
                 </div>
                 <p className="text-xs text-slate-600 mt-1 line-clamp-2">{feature.comment}</p>
               </div>

@@ -30,9 +30,9 @@ export default function BasemapsPanel({ selectedBasemap, onSelectBasemap }) {
         Choose a basemap for your map view
       </p>
 
-      <RadioGroup value={selectedBasemap} onChange={(e) => onSelectBasemap(e.target.value)}>
+      <RadioGroup value={selectedBasemap} onChange={e => onSelectBasemap(e.target.value)}>
         <div className="flex-1 overflow-y-auto space-y-3">
-          {basemaps.map((basemap) => (
+          {basemaps.map(basemap => (
             <div
               key={basemap.id}
               className={`relative border-2 rounded-lg p-3 cursor-pointer transition-all duration-200 ${
@@ -40,8 +40,7 @@ export default function BasemapsPanel({ selectedBasemap, onSelectBasemap }) {
                   ? 'border-[#38a169] bg-emerald-50/50 shadow-md'
                   : 'border-gray-200 hover:border-slate-300 bg-white hover:shadow-md'
               }`}
-              onClick={() => onSelectBasemap(basemap.id)}
-            >
+              onClick={() => onSelectBasemap(basemap.id)}>
               <div className="flex items-start gap-3">
                 <FormControlLabel
                   value={basemap.id}
@@ -65,13 +64,14 @@ export default function BasemapsPanel({ selectedBasemap, onSelectBasemap }) {
                   className="w-full h-full transition-all duration-200"
                   style={{
                     backgroundColor: basemapColors[basemap.id],
-                    backgroundImage: basemap.id === 'satellite' 
-                      ? 'linear-gradient(45deg, #1a4d2e 25%, #2d5a3a 25%, #2d5a3a 50%, #1a4d2e 50%, #1a4d2e 75%, #2d5a3a 75%, #2d5a3a)'
-                      : basemap.id === 'terrain'
-                      ? 'linear-gradient(180deg, #a0826d 0%, #8b7355 50%, #6b5d4f 100%)'
-                      : basemap.id === 'dark'
-                      ? 'linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%)'
-                      : 'none',
+                    backgroundImage:
+                      basemap.id === 'satellite'
+                        ? 'linear-gradient(45deg, #1a4d2e 25%, #2d5a3a 25%, #2d5a3a 50%, #1a4d2e 50%, #1a4d2e 75%, #2d5a3a 75%, #2d5a3a)'
+                        : basemap.id === 'terrain'
+                          ? 'linear-gradient(180deg, #a0826d 0%, #8b7355 50%, #6b5d4f 100%)'
+                          : basemap.id === 'dark'
+                            ? 'linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%)'
+                            : 'none',
                     backgroundSize: basemap.id === 'satellite' ? '20px 20px' : 'cover',
                   }}
                 />

@@ -1,13 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
-import { 
-  ZoomIn, 
-  ZoomOut, 
-  Home, 
-  Maximize, 
-  Info, 
-  Ruler, 
+import {
+  ZoomIn,
+  ZoomOut,
+  Home,
+  Maximize,
+  Info,
+  Ruler,
   Crosshair,
-  SquareDashedMousePointer
+  SquareDashedMousePointer,
 } from 'lucide-react';
 import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
@@ -102,7 +102,7 @@ export default function MapArea({ selectedFeeders = [], selectedBasemap, layers 
     });
 
     // Update coordinates on mouse move
-    map.on('pointermove', (event) => {
+    map.on('pointermove', event => {
       const coords = map.getEventCoordinate(event.originalEvent);
       const [lng, lat] = toLonLat(coords);
       setMouseCoords({ lat, lng });
@@ -118,7 +118,7 @@ export default function MapArea({ selectedFeeders = [], selectedBasemap, layers 
     if (!mapInstanceRef.current) return;
 
     const map = mapInstanceRef.current;
-    map.getLayers().forEach((layer) => {
+    map.getLayers().forEach(layer => {
       if (layer instanceof TileLayer) {
         const layerName = layer.get('name');
         if (layerName === selectedBasemap) {
@@ -135,9 +135,10 @@ export default function MapArea({ selectedFeeders = [], selectedBasemap, layers 
     if (!mapInstanceRef.current) return;
 
     const map = mapInstanceRef.current;
-    const feederLayer = map.getLayers().getArray().find(
-      (layer) => layer instanceof VectorLayer
-    );
+    const feederLayer = map
+      .getLayers()
+      .getArray()
+      .find(layer => layer instanceof VectorLayer);
 
     if (feederLayer && feederLayer.getSource()) {
       const source = feederLayer.getSource();
@@ -147,10 +148,10 @@ export default function MapArea({ selectedFeeders = [], selectedBasemap, layers 
         // Add markers for each selected feeder
         const features = selectedFeeders.map((feederId, index) => {
           const feederCoords = fromLonLat([
-            76.2144 + (index * 0.02) + (Math.random() - 0.5) * 0.01,
-            10.5276 + (index * 0.02) + (Math.random() - 0.5) * 0.01,
+            76.2144 + index * 0.02 + (Math.random() - 0.5) * 0.01,
+            10.5276 + index * 0.02 + (Math.random() - 0.5) * 0.01,
           ]);
-          
+
           const feature = new Feature({
             geometry: new Point(feederCoords),
             name: feederId,
@@ -227,11 +228,11 @@ export default function MapArea({ selectedFeeders = [], selectedBasemap, layers 
       }
 
       if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen().catch((err) => {
+        document.documentElement.requestFullscreen().catch(err => {
           console.log('Fullscreen request failed:', err.message);
         });
       } else {
-        document.exitFullscreen().catch((err) => {
+        document.exitFullscreen().catch(err => {
           console.log('Exit fullscreen failed:', err.message);
         });
       }
@@ -256,8 +257,7 @@ export default function MapArea({ selectedFeeders = [], selectedBasemap, layers 
             color: 'white',
           },
           transition: 'all 0.2s',
-        }}
-      >
+        }}>
         <Icon className="h-5 w-5" />
       </IconButton>
     </Tooltip>
@@ -275,12 +275,7 @@ export default function MapArea({ selectedFeeders = [], selectedBasemap, layers 
       {/* Map Controls */}
       <div className="absolute top-4 right-4 flex flex-col space-y-2 z-10">
         <div className="bg-white rounded-lg shadow-xl overflow-hidden border border-gray-200">
-          <MapControlButton
-            icon={ZoomIn}
-            label="Zoom In"
-            title="Zoom In"
-            onClick={handleZoomIn}
-          />
+          <MapControlButton icon={ZoomIn} label="Zoom In" title="Zoom In" onClick={handleZoomIn} />
 
           <div className="border-t border-gray-200" />
 
@@ -302,30 +297,15 @@ export default function MapArea({ selectedFeeders = [], selectedBasemap, layers 
 
           <div className="border-t border-gray-200" />
 
-          <MapControlButton
-            icon={Info}
-            label="Info"
-            title="Info"
-            onClick={() => {}}
-          />
+          <MapControlButton icon={Info} label="Info" title="Info" onClick={() => {}} />
 
           <div className="border-t border-gray-200" />
 
-          <MapControlButton
-            icon={Home}
-            label="Home"
-            title="Home"
-            onClick={handleHome}
-          />
+          <MapControlButton icon={Home} label="Home" title="Home" onClick={handleHome} />
 
           <div className="border-t border-gray-200" />
 
-          <MapControlButton
-            icon={Ruler}
-            label="Measure"
-            title="Measure"
-            onClick={() => {}}
-          />
+          <MapControlButton icon={Ruler} label="Measure" title="Measure" onClick={() => {}} />
 
           <div className="border-t border-gray-200" />
 
@@ -353,7 +333,9 @@ export default function MapArea({ selectedFeeders = [], selectedBasemap, layers 
         <div className="bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded shadow-lg border border-gray-200">
           <div className="flex items-center gap-2 text-xs text-gray-700">
             <span>Scale:</span>
-            <span className="font-mono font-medium text-gray-900">1:{Math.round(Math.pow(2, 18 - zoomLevel) * 1000)}</span>
+            <span className="font-mono font-medium text-gray-900">
+              1:{Math.round(Math.pow(2, 18 - zoomLevel) * 1000)}
+            </span>
           </div>
         </div>
 
@@ -361,10 +343,12 @@ export default function MapArea({ selectedFeeders = [], selectedBasemap, layers 
         <div className="bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded shadow-lg border border-gray-200">
           <div className="flex items-center gap-2">
             <div className="h-0.5 bg-gray-900 w-20" />
-            <span className="text-xs font-mono font-medium text-gray-900">{Math.round(100 / Math.pow(2, zoomLevel - 12))} km</span>
+            <span className="text-xs font-mono font-medium text-gray-900">
+              {Math.round(100 / Math.pow(2, zoomLevel - 12))} km
+            </span>
           </div>
         </div>
-        
+
         {/* Coordinates */}
         <div className="bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded shadow-lg border border-gray-200">
           <div className="flex items-center gap-2 text-xs text-gray-700">

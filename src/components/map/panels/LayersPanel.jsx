@@ -6,16 +6,34 @@ import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import { Search } from 'lucide-react';
 
+// const layerLegends = {
+//   '1': { color: '#f59e0b', symbol: '⬤' },
+//   '2': { color: '#dc2626', symbol: '━' },
+//   '3': { color: '#3b82f6', symbol: '━' },
+//   '4': { color: '#8b5cf6', symbol: '■' },
+//   '5': { color: '#10b981', symbol: '▢' },
+//   '24': { color: '#6b7280', symbol: '━' },
+//   '25': { color: '#9ca3af', symbol: '━' },
+//   '26': { color: '#d1d5db', symbol: '■' },
+//   '27': { color: '#06b6d4', symbol: '~' },
+// };
+
 const layerLegends = {
-  '1': { color: '#f59e0b', symbol: '⬤' },
-  '2': { color: '#dc2626', symbol: '━' },
-  '3': { color: '#3b82f6', symbol: '━' },
-  '4': { color: '#8b5cf6', symbol: '■' },
-  '5': { color: '#10b981', symbol: '▢' },
-  '24': { color: '#6b7280', symbol: '━' },
-  '25': { color: '#9ca3af', symbol: '━' },
-  '26': { color: '#d1d5db', symbol: '■' },
-  '27': { color: '#06b6d4', symbol: '~' },
+  1: [
+    { color: '#f59e0b', symbol: '⬤', label: 'Active' },
+    { color: '#dc2626', symbol: '⬤', label: 'Inactive' },
+    { color: '#f59e0b', symbol: '⬤', label: 'Active' },
+    { color: '#dc2626', symbol: '⬤', label: 'Inactive' },
+    { color: '#f59e0b', symbol: '⬤', label: 'Active' },
+    { color: '#dc2626', symbol: '⬤', label: 'Inactive' },
+    { color: '#f59e0b', symbol: '⬤', label: 'Active' },
+    { color: '#dc2626', symbol: '⬤', label: 'Inactive' },
+  ],
+  2: [
+    { color: '#dc2626', symbol: '━', label: '11 KV' },
+    { color: '#9f1239', symbol: '━', label: '33 KV' },
+  ],
+  // ... multiple items per layer
 };
 
 export default function LayersPanel({ layers, onLayerToggle, onOpacityChange }) {
@@ -35,7 +53,7 @@ export default function LayersPanel({ layers, onLayerToggle, onOpacityChange }) 
       <TextField
         placeholder="Search layers..."
         value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
+        onChange={e => setSearchQuery(e.target.value)}
         size="small"
         fullWidth
         sx={{ mb: 2 }}
@@ -50,8 +68,10 @@ export default function LayersPanel({ layers, onLayerToggle, onOpacityChange }) 
 
       {/* Layers List - Compact */}
       <div className="flex-1 overflow-y-auto space-y-1.5">
-        {filteredLayers.map((layer) => (
-          <div key={layer.id} className="border border-gray-200 rounded-lg bg-white hover:border-gray-300 transition-all">
+        {filteredLayers.map(layer => (
+          <div
+            key={layer.id}
+            className="border border-gray-200 rounded-lg bg-white hover:border-gray-300 transition-all">
             {/* Layer Row */}
             <div className="p-2">
               {/* Layer Name and Toggle */}
@@ -75,12 +95,19 @@ export default function LayersPanel({ layers, onLayerToggle, onOpacityChange }) 
                     },
                   }}
                 />
-                
+
                 {/* Legend Symbol */}
                 {layerLegends[layer.id] && (
-                  <span className="text-base ml-2" style={{ color: layerLegends[layer.id].color }}>
-                    {layerLegends[layer.id].symbol}
-                  </span>
+                  <div className="flex flex-wrap gap-2 mb-2">
+                    {layerLegends[layer.id].map((legend, index) => (
+                      <div key={index} className="flex items-center gap-1 text-xs">
+                        <span className="text-base" style={{ color: legend.color }}>
+                          {legend.symbol}
+                        </span>
+                        <span className="text-slate-600">{legend.label}</span>
+                      </div>
+                    ))}
+                  </div>
                 )}
               </div>
 
@@ -95,7 +122,7 @@ export default function LayersPanel({ layers, onLayerToggle, onOpacityChange }) 
                     max={100}
                     step={5}
                     size="small"
-                    sx={{ 
+                    sx={{
                       flex: 1,
                       color: '#38a169',
                       height: 4,
@@ -105,7 +132,9 @@ export default function LayersPanel({ layers, onLayerToggle, onOpacityChange }) 
                       },
                     }}
                   />
-                  <span className="text-xs text-slate-900 font-medium w-8 text-right">{layer.opacity}%</span>
+                  <span className="text-xs text-slate-900 font-medium w-8 text-right">
+                    {layer.opacity}%
+                  </span>
                 </div>
               )}
             </div>

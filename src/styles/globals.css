@@ -51,7 +51,7 @@
   --sidebar-accent-foreground: #f8fafc;
   --sidebar-border: #334155;
   --sidebar-ring: #38a169;
-  
+
   /* Custom TCED Colors - Professional Theme */
   --tcfd-primary: #0e5a3f;
   --tcfd-secondary: #eab839;
@@ -152,9 +152,15 @@
   body {
     @apply bg-background text-foreground antialiased;
   }
-  
+
   /* Improved text readability */
-  p, span, label, button, input, textarea, select {
+  p,
+  span,
+  label,
+  button,
+  input,
+  textarea,
+  select {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
@@ -165,7 +171,7 @@
  * Base typography. This is not applied to elements which have an ancestor with a Tailwind text class.
  */
 @layer base {
-  :where(:not(:has([class*=" text-"]), :not(:has([class^="text-"])))) {
+  :where(:not(:has([class*=' text-']), :not(:has([class^='text-'])))) {
     h1 {
       font-size: var(--text-2xl);
       font-weight: var(--font-weight-medium);

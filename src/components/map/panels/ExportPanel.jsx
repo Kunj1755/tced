@@ -30,9 +30,9 @@ export default function ExportPanel() {
   const [selectedLayers, setSelectedLayers] = useState([]);
   const [exportFormat, setExportFormat] = useState('geojson');
 
-  const handleLayerToggle = (layer) => {
-    setSelectedLayers((prev) =>
-      prev.includes(layer) ? prev.filter((l) => l !== layer) : [...prev, layer]
+  const handleLayerToggle = layer => {
+    setSelectedLayers(prev =>
+      prev.includes(layer) ? prev.filter(l => l !== layer) : [...prev, layer]
     );
   };
 
@@ -46,10 +46,10 @@ export default function ExportPanel() {
         Select layers and format to export data
       </p>
 
-      <div className="flex-1 overflow-y-auto space-y-3">
+      <div className="flex-1 overflow-y-auto space-y-3 mb-4">
         <h4 className="text-sm text-slate-900">Select Layers</h4>
         <FormGroup>
-          {layers.map((layer) => (
+          {layers.map(layer => (
             <FormControlLabel
               key={layer}
               control={
@@ -60,7 +60,10 @@ export default function ExportPanel() {
                 />
               }
               label={layer}
-              sx={{ '& .MuiFormControlLabel-label': { fontSize: '0.875rem', color: '#334155' } }}
+              sx={{
+                mb: 0.5, // ← ADDED margin bottom
+                '& .MuiFormControlLabel-label': { fontSize: '0.875rem', color: '#334155' },
+              }}
             />
           ))}
         </FormGroup>
@@ -71,10 +74,9 @@ export default function ExportPanel() {
         <Select
           labelId="export-format-label"
           value={exportFormat}
-          onChange={(e) => setExportFormat(e.target.value)}
-          label="Export Format"
-        >
-          {exportFormats.map((format) => {
+          onChange={e => setExportFormat(e.target.value)}
+          label="Export Format">
+          {exportFormats.map(format => {
             const Icon = format.icon;
             return (
               <MenuItem key={format.id} value={format.id}>
@@ -95,8 +97,7 @@ export default function ExportPanel() {
         variant="contained"
         fullWidth
         sx={{ bgcolor: '#475569', '&:hover': { bgcolor: '#1e293b' } }}
-        startIcon={<Download className="h-4 w-4" />}
-      >
+        startIcon={<Download className="h-4 w-4" />}>
         Export Data
       </Button>
 
@@ -104,7 +105,7 @@ export default function ExportPanel() {
         <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg mt-3">
           <p className="text-xs text-slate-700">
             Exporting {selectedLayers.length} layer{selectedLayers.length !== 1 ? 's' : ''} as{' '}
-            {exportFormats.find((f) => f.id === exportFormat)?.name}
+            {exportFormats.find(f => f.id === exportFormat)?.name}
           </p>
         </div>
       )}

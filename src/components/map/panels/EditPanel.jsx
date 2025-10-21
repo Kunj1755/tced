@@ -36,7 +36,7 @@ export default function EditPanel({ selectedFeature, onFeatureSelect }) {
     notes: '',
   });
 
-  const handleEquipmentTypeChange = (event) => {
+  const handleEquipmentTypeChange = event => {
     setSelectedEquipmentType(event.target.value);
   };
 
@@ -45,12 +45,12 @@ export default function EditPanel({ selectedFeature, onFeatureSelect }) {
       alert('Please select an equipment type first');
       return;
     }
-    
+
     setIsSelectMode(true);
     if (onFeatureSelect) {
       onFeatureSelect(true);
     }
-    
+
     // Simulate feature selection after a delay
     setTimeout(() => {
       handleFeatureSelected({
@@ -66,7 +66,7 @@ export default function EditPanel({ selectedFeature, onFeatureSelect }) {
     }, 2000);
   };
 
-  const handleFeatureSelected = (feature) => {
+  const handleFeatureSelected = feature => {
     setAttributes({
       featureId: feature.id || 'DT-001',
       name: feature.name || 'Main Transformer',
@@ -115,9 +115,8 @@ export default function EditPanel({ selectedFeature, onFeatureSelect }) {
           value={selectedEquipmentType}
           label="Equipment Type"
           onChange={handleEquipmentTypeChange}
-          disabled={!!attributes.featureId}
-        >
-          {equipmentTypes.map((type) => (
+          disabled={!!attributes.featureId}>
+          {equipmentTypes.map(type => (
             <MenuItem key={type.value} value={type.value}>
               {type.label}
             </MenuItem>
@@ -131,31 +130,33 @@ export default function EditPanel({ selectedFeature, onFeatureSelect }) {
           control={
             <Checkbox
               checked={enableSnapping}
-              onChange={(e) => setEnableSnapping(e.target.checked)}
+              onChange={e => setEnableSnapping(e.target.checked)}
               size="small"
             />
           }
           label="Enable snapping"
-          sx={{ 
+          sx={{
             mb: 2,
-            '& .MuiFormControlLabel-label': { fontSize: '0.875rem', color: '#334155' } 
+            '& .MuiFormControlLabel-label': { fontSize: '0.875rem', color: '#334155' },
           }}
         />
       )}
 
       {!isSelectMode && !attributes.featureId && selectedEquipmentType && (
         <Alert severity="info" sx={{ mb: 2 }}>
-          {enableSnapping ? 'Snapping enabled. ' : ''}Click the button below to select a {equipmentTypes.find(t => t.value === selectedEquipmentType)?.label} on the map.
+          {enableSnapping ? 'Snapping enabled. ' : ''}Click the button below to select a{' '}
+          {equipmentTypes.find(t => t.value === selectedEquipmentType)?.label} on the map.
         </Alert>
       )}
 
       {isSelectMode && (
         <Alert severity="warning" sx={{ mb: 2 }}>
-          <strong>Selection Mode Active:</strong> Click on a {equipmentTypes.find(t => t.value === selectedEquipmentType)?.label} on the map
+          <strong>Selection Mode Active:</strong> Click on a{' '}
+          {equipmentTypes.find(t => t.value === selectedEquipmentType)?.label} on the map
         </Alert>
       )}
 
-      <div className="flex-1 overflow-y-auto space-y-2">
+      <div className="flex-1 overflow-y-auto space-y-3">
         {/* Step 2: Select Feature Button */}
         {!attributes.featureId && selectedEquipmentType && (
           <Button
@@ -166,8 +167,7 @@ export default function EditPanel({ selectedFeature, onFeatureSelect }) {
             sx={{
               bgcolor: isSelectMode ? '#38a169' : '#475569',
               '&:hover': { bgcolor: isSelectMode ? '#2f855a' : '#1e293b' },
-            }}
-          >
+            }}>
             {isSelectMode ? 'Selecting... Click on Map' : 'Select Feature for Editing'}
           </Button>
         )}
@@ -177,6 +177,9 @@ export default function EditPanel({ selectedFeature, onFeatureSelect }) {
           <>
             <TextField
               label="Feature ID"
+              InputLabelProps={{
+                shrink: true,
+              }}
               value={attributes.featureId}
               disabled
               fullWidth
@@ -185,14 +188,20 @@ export default function EditPanel({ selectedFeature, onFeatureSelect }) {
 
             <TextField
               label="Name"
+              InputLabelProps={{
+                shrink: true,
+              }}
               value={attributes.name}
-              onChange={(e) => setAttributes({ ...attributes, name: e.target.value })}
+              onChange={e => setAttributes({ ...attributes, name: e.target.value })}
               fullWidth
               size="small"
             />
 
             <TextField
               label="Type"
+              InputLabelProps={{
+                shrink: true,
+              }}
               value={attributes.type}
               disabled
               fullWidth
@@ -201,40 +210,55 @@ export default function EditPanel({ selectedFeature, onFeatureSelect }) {
 
             <TextField
               label="Capacity"
+              InputLabelProps={{
+                shrink: true,
+              }}
               value={attributes.capacity}
-              onChange={(e) => setAttributes({ ...attributes, capacity: e.target.value })}
+              onChange={e => setAttributes({ ...attributes, capacity: e.target.value })}
               fullWidth
               size="small"
             />
 
             <TextField
               label="Voltage"
+              InputLabelProps={{
+                shrink: true,
+              }}
               value={attributes.voltage}
-              onChange={(e) => setAttributes({ ...attributes, voltage: e.target.value })}
+              onChange={e => setAttributes({ ...attributes, voltage: e.target.value })}
               fullWidth
               size="small"
             />
 
             <TextField
               label="Location"
+              InputLabelProps={{
+                shrink: true,
+              }}
               value={attributes.location}
-              onChange={(e) => setAttributes({ ...attributes, location: e.target.value })}
+              onChange={e => setAttributes({ ...attributes, location: e.target.value })}
               fullWidth
               size="small"
             />
 
             <TextField
               label="Status"
+              InputLabelProps={{
+                shrink: true,
+              }}
               value={attributes.status}
-              onChange={(e) => setAttributes({ ...attributes, status: e.target.value })}
+              onChange={e => setAttributes({ ...attributes, status: e.target.value })}
               fullWidth
               size="small"
             />
 
             <TextField
               label="Notes"
+              InputLabelProps={{
+                shrink: true,
+              }}
               value={attributes.notes}
-              onChange={(e) => setAttributes({ ...attributes, notes: e.target.value })}
+              onChange={e => setAttributes({ ...attributes, notes: e.target.value })}
               fullWidth
               multiline
               rows={3}
@@ -247,8 +271,7 @@ export default function EditPanel({ selectedFeature, onFeatureSelect }) {
                 variant="contained"
                 fullWidth
                 sx={{ bgcolor: '#38a169', '&:hover': { bgcolor: '#2f855a' } }}
-                startIcon={<Save className="h-4 w-4" />}
-              >
+                startIcon={<Save className="h-4 w-4" />}>
                 Save Changes
               </Button>
               <Button
@@ -256,8 +279,7 @@ export default function EditPanel({ selectedFeature, onFeatureSelect }) {
                 variant="outlined"
                 fullWidth
                 sx={{ color: '#64748b', borderColor: '#cbd5e1' }}
-                startIcon={<X className="h-4 w-4" />}
-              >
+                startIcon={<X className="h-4 w-4" />}>
                 Cancel
               </Button>
             </div>

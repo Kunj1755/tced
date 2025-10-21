@@ -51,7 +51,7 @@ export default function MapPage({ onLogout }) {
     { id: '28', name: 'Vegetation', visible: false, opacity: 50 },
   ]);
 
-  const handleToolClick = (tool) => {
+  const handleToolClick = tool => {
     setActiveTool(activeTool === tool ? null : tool);
   };
 
@@ -59,24 +59,22 @@ export default function MapPage({ onLogout }) {
     setActiveTool(null);
   };
 
-  const handleLayerToggle = (layerId) => {
-    setLayers(layers.map(layer => 
-      layer.id === layerId ? { ...layer, visible: !layer.visible } : layer
-    ));
+  const handleLayerToggle = layerId => {
+    setLayers(
+      layers.map(layer => (layer.id === layerId ? { ...layer, visible: !layer.visible } : layer))
+    );
   };
 
   const handleLayerOpacityChange = (layerId, opacity) => {
-    setLayers(layers.map(layer => 
-      layer.id === layerId ? { ...layer, opacity } : layer
-    ));
+    setLayers(layers.map(layer => (layer.id === layerId ? { ...layer, opacity } : layer)));
   };
 
   const renderPanelContent = () => {
     switch (activeTool) {
       case 'feeders':
         return (
-          <FeedersPanel 
-            selectedFeeders={selectedFeeders} 
+          <FeedersPanel
+            selectedFeeders={selectedFeeders}
             onSelectFeeders={setSelectedFeeders}
             bookmarkedFeeder={bookmarkedFeeder}
             onBookmarkFeeder={setBookmarkedFeeder}
@@ -84,18 +82,15 @@ export default function MapPage({ onLogout }) {
         );
       case 'layers':
         return (
-          <LayersPanel 
-            layers={layers} 
-            onLayerToggle={handleLayerToggle} 
-            onOpacityChange={handleLayerOpacityChange} 
+          <LayersPanel
+            layers={layers}
+            onLayerToggle={handleLayerToggle}
+            onOpacityChange={handleLayerOpacityChange}
           />
         );
       case 'basemaps':
         return (
-          <BasemapsPanel 
-            selectedBasemap={selectedBasemap} 
-            onSelectBasemap={setSelectedBasemap} 
-          />
+          <BasemapsPanel selectedBasemap={selectedBasemap} onSelectBasemap={setSelectedBasemap} />
         );
       case 'search':
         return <SearchPanel onSearchResults={setSearchResults} />;
@@ -114,37 +109,42 @@ export default function MapPage({ onLogout }) {
 
   const getPanelTitle = () => {
     switch (activeTool) {
-      case 'feeders': return 'Feeders';
-      case 'layers': return 'Layers';
-      case 'basemaps': return 'Basemaps';
-      case 'search': return 'Search';
-      case 'edit': return 'Edit';
-      case 'draw': return 'Draw';
-      case 'export': return 'Export';
-      case 'print': return 'Print';
-      default: return '';
+      case 'feeders':
+        return 'Feeders';
+      case 'layers':
+        return 'Layers';
+      case 'basemaps':
+        return 'Basemaps';
+      case 'search':
+        return 'Search';
+      case 'edit':
+        return 'Edit';
+      case 'draw':
+        return 'Draw';
+      case 'export':
+        return 'Export';
+      case 'print':
+        return 'Print';
+      default:
+        return '';
     }
   };
 
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-slate-50">
       <MapHeader onLogout={onLogout} />
-      
+
       <div className="flex-1 flex overflow-hidden relative">
-        <MapSidebar 
-          activeTool={activeTool}
-          onToolClick={handleToolClick}
-        />
-        
-        <SlidingPanel 
+        <MapSidebar activeTool={activeTool} onToolClick={handleToolClick} />
+
+        <SlidingPanel
           isOpen={activeTool !== null}
           title={getPanelTitle()}
-          onClose={handleClosePanel}
-        >
+          onClose={handleClosePanel}>
           {renderPanelContent()}
         </SlidingPanel>
 
-        <MapArea 
+        <MapArea
           selectedFeeders={selectedFeeders}
           selectedBasemap={selectedBasemap}
           layers={layers}
@@ -153,10 +153,9 @@ export default function MapPage({ onLogout }) {
         <SearchResultsTable
           results={searchResults}
           onClose={() => setSearchResults(null)}
-          onLocate={(feature) => console.log('Locating feature:', feature)}
+          onLocate={feature => console.log('Locating feature:', feature)}
         />
       </div>
     </div>
   );
 }
-

@@ -1,13 +1,53 @@
 export function ColorPalette() {
   const colors = [
-    { name: 'Primary', hex: '#0e5a3f', usage: 'Main brand color from TCED logo, header, primary buttons', contrast: 'AAA' },
-    { name: 'Secondary', hex: '#eab839', usage: 'Golden yellow from logo lightning bolt, bookmarks, highlights', contrast: 'AA' },
-    { name: 'Accent', hex: '#1a5c45', usage: 'Medium-dark green for links, tooltips, hover states', contrast: 'AAA' },
-    { name: 'Success', hex: '#38a169', usage: 'Active tool indicators, success states, highlights', contrast: 'AAA' },
-    { name: 'Accent Red', hex: '#c41e3a', usage: 'Red accent from logo lightning, alerts, logout', contrast: 'AAA' },
-    { name: 'Dark', hex: '#0a3528', usage: 'Very dark green for sidebar background', contrast: 'AAA' },
-    { name: 'Light', hex: '#e8f5f0', usage: 'Very light green for panel backgrounds, light accents', contrast: 'AAA' },
-    { name: 'Text Primary', hex: '#111827', usage: 'Primary text color (gray-900)', contrast: 'AAA' },
+    {
+      name: 'Primary',
+      hex: '#0e5a3f',
+      usage: 'Main brand color from TCED logo, header, primary buttons',
+      contrast: 'AAA',
+    },
+    {
+      name: 'Secondary',
+      hex: '#eab839',
+      usage: 'Golden yellow from logo lightning bolt, bookmarks, highlights',
+      contrast: 'AA',
+    },
+    {
+      name: 'Accent',
+      hex: '#1a5c45',
+      usage: 'Medium-dark green for links, tooltips, hover states',
+      contrast: 'AAA',
+    },
+    {
+      name: 'Success',
+      hex: '#38a169',
+      usage: 'Active tool indicators, success states, highlights',
+      contrast: 'AAA',
+    },
+    {
+      name: 'Accent Red',
+      hex: '#c41e3a',
+      usage: 'Red accent from logo lightning, alerts, logout',
+      contrast: 'AAA',
+    },
+    {
+      name: 'Dark',
+      hex: '#0a3528',
+      usage: 'Very dark green for sidebar background',
+      contrast: 'AAA',
+    },
+    {
+      name: 'Light',
+      hex: '#e8f5f0',
+      usage: 'Very light green for panel backgrounds, light accents',
+      contrast: 'AAA',
+    },
+    {
+      name: 'Text Primary',
+      hex: '#111827',
+      usage: 'Primary text color (gray-900)',
+      contrast: 'AAA',
+    },
     { name: 'Text Secondary', hex: '#374151', usage: 'Secondary text (gray-700)', contrast: 'AA' },
   ];
 
@@ -20,15 +60,15 @@ export function ColorPalette() {
           <p className="text-sm text-gray-700 mb-2">
             Colors extracted minutely from the TCED logo for consistent branding
           </p>
-          <p className="text-xs text-gray-600">
-            All colors meet WCAG 2.1 accessibility standards
-          </p>
+          <p className="text-xs text-gray-600">All colors meet WCAG 2.1 accessibility standards</p>
         </div>
 
         {/* Color Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-          {colors.map((color) => (
-            <div key={color.hex} className="border border-gray-200 rounded-lg p-4 hover:shadow-lg transition-shadow bg-white">
+          {colors.map(color => (
+            <div
+              key={color.hex}
+              className="border border-gray-200 rounded-lg p-4 hover:shadow-lg transition-shadow bg-white">
               <div className="flex items-center space-x-4 mb-3">
                 <div
                   className="w-16 h-16 rounded-lg border-2 border-gray-300 shadow-sm flex-shrink-0"
@@ -60,7 +100,7 @@ export function ColorPalette() {
                 <p className="text-[#1a5c45]">Brand Accent (#1a5c45) - AAA</p>
               </div>
             </div>
-            
+
             <div className="border border-gray-200 rounded-lg p-6 bg-[#0a3528]">
               <p className="text-sm text-white/80 mb-4">Dark Background (Sidebar)</p>
               <div className="space-y-2">

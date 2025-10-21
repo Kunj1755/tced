@@ -41,11 +41,15 @@ export default function PrintPanel() {
         Configure print settings and generate map output
       </p>
 
-      <div className="flex-1 overflow-y-auto space-y-3">
+      <div className="flex-1 overflow-y-auto space-y-4">
         <TextField
           label="Map Title *"
+          InputLabelProps={{
+            // ← ADDED
+            shrink: true, // ← ADDED
+          }}
           value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={e => setTitle(e.target.value)}
           placeholder="Enter map title"
           required
           fullWidth
@@ -59,10 +63,9 @@ export default function PrintPanel() {
           <Select
             labelId="paper-size-label"
             value={paperSize}
-            onChange={(e) => setPaperSize(e.target.value)}
-            label="Paper Size"
-          >
-            {paperSizes.map((size) => (
+            onChange={e => setPaperSize(e.target.value)}
+            label="Paper Size">
+            {paperSizes.map(size => (
               <MenuItem key={size} value={size}>
                 {size}
               </MenuItem>
@@ -75,10 +78,9 @@ export default function PrintPanel() {
           <Select
             labelId="format-label"
             value={format}
-            onChange={(e) => setFormat(e.target.value)}
-            label="Output Format"
-          >
-            {formats.map((fmt) => {
+            onChange={e => setFormat(e.target.value)}
+            label="Output Format">
+            {formats.map(fmt => {
               const Icon = fmt.icon;
               return (
                 <MenuItem key={fmt.id} value={fmt.id}>
@@ -94,12 +96,12 @@ export default function PrintPanel() {
 
         <div className="pt-2 border-t border-gray-200">
           <h4 className="text-sm text-slate-900 mb-2">Map Elements</h4>
-          <div className="space-y-1">
+          <div className="space-y-2">
             <FormControlLabel
               control={
                 <Checkbox
                   checked={includeLegend}
-                  onChange={(e) => setIncludeLegend(e.target.checked)}
+                  onChange={e => setIncludeLegend(e.target.checked)}
                   size="small"
                 />
               }
@@ -110,7 +112,7 @@ export default function PrintPanel() {
               control={
                 <Checkbox
                   checked={includeScale}
-                  onChange={(e) => setIncludeScale(e.target.checked)}
+                  onChange={e => setIncludeScale(e.target.checked)}
                   size="small"
                 />
               }
@@ -121,7 +123,7 @@ export default function PrintPanel() {
               control={
                 <Checkbox
                   checked={includeNorth}
-                  onChange={(e) => setIncludeNorth(e.target.checked)}
+                  onChange={e => setIncludeNorth(e.target.checked)}
                   size="small"
                 />
               }
@@ -136,13 +138,12 @@ export default function PrintPanel() {
           disabled={!title.trim()}
           variant="contained"
           fullWidth
-          sx={{ 
-            bgcolor: '#475569', 
+          sx={{
+            bgcolor: '#475569',
             '&:hover': { bgcolor: '#1e293b' },
             mt: 2,
           }}
-          startIcon={<Printer className="h-4 w-4" />}
-        >
+          startIcon={<Printer className="h-4 w-4" />}>
           Generate Map
         </Button>
       </div>
