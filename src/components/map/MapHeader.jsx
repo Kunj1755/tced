@@ -24,60 +24,63 @@ export default function MapHeader({ onLogout }) {
 
   return (
     <header
-      className="h-16 shadow-lg flex items-center justify-between px-4 sm:px-6 sticky top-0 z-50 relative"
+      className="h-16 shadow-lg flex items-center justify-between px-3 sm:px-4 md:px-6 sticky top-0 z-50 relative"
       style={{
-        backgroundImage: `url(${'/app_header_background.png'})`,
+        backgroundImage: "/app_header_background.png",
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
-      }}>
+        backgroundColor: '#1e293b' // ← ADDED: Fallback color while image loads
+      }}
+    >
+      {/* ADDED: Preload the background image */}
+      <link rel="preload" as="image" href="/app_header_background.png" />
       {/* Overlay for better text readability */}
       <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-black/30" />
 
-      <div className="flex items-center space-x-3 sm:space-x-4 relative z-10">
+      <div className="flex items-center gap-2 sm:gap-3 md:gap-4 relative z-10 flex-1 min-w-0">
         <img
-          src={'/company_logo.png'}
+         src={'/company_logo.png'}
           alt="Thrissur Corporation Electricity Department"
-          className="h-12 sm:h-11 w-auto drop-shadow-lg"
+          className="h-8 sm:h-10 md:h-11 w-auto drop-shadow-lg flex-shrink-0"
         />
-        <div className="border-l border-white/40 h-8 sm:h-10 mx-1 sm:mx-2" />
-        <div>
+        <div className="border-l border-white/40 h-6 sm:h-8 md:h-10" />
+        <div className="flex-1 min-w-0">
           <h1
-            className="text-white text-sm sm:text-base tracking-wide drop-shadow-lg"
-            style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.6)' }}>
+            className="text-white text-xs sm:text-sm md:text-base lg:text-base tracking-wide drop-shadow-lg truncate"
+            style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.6)' }}
+          >
             Thrissur Corporation Electricity Department
           </h1>
         </div>
       </div>
 
-      <div className="flex items-center space-x-2 relative z-10">
+      <div className="flex items-center gap-1 sm:gap-2 relative z-10 flex-shrink-0">
         <Button
           onClick={handleClick}
           sx={{
             color: 'white',
             '&:hover': { bgcolor: 'rgba(255, 255, 255, 0.2)' },
-            px: { xs: 1.5, sm: 2 },
-            height: '40px',
+            px: { xs: 1, sm: 1.5, md: 2 },
+            minWidth: 'auto',
+            height: { xs: '36px', sm: '40px' },
             textTransform: 'none',
           }}
-          aria-label="User menu">
-          <div className="flex items-center space-x-2 sm:space-x-3">
-            <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/30 shadow-lg">
-              <User className="h-4 w-4" />
+          aria-label="User menu"
+        >
+          <div className="flex items-center gap-1 sm:gap-2 md:gap-3">
+            <div className="w-7 h-7 sm:w-8 sm:h-8 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/30 shadow-lg">
+              <User className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
             </div>
             <div className="text-left hidden md:block">
-              <p
-                className="text-sm leading-tight drop-shadow-lg"
-                style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>
+              <p className="text-sm leading-tight drop-shadow-lg" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>
                 test user
               </p>
-              <p
-                className="text-xs text-white/90 leading-tight drop-shadow-lg"
-                style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>
+              <p className="text-xs text-white/90 leading-tight drop-shadow-lg" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>
                 Administrator
               </p>
             </div>
-            <ChevronDown className="h-4 w-4 ml-1" />
+            <ChevronDown className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
           </div>
         </Button>
 
