@@ -92,7 +92,7 @@ export default function LayersPanel({ layers, onLayerToggle, onOpacityChange }) 
                 />
 
                 {/* Legend Symbol */}
-                {layerLegends[layer.id] && (
+                {/* {layerLegends[layer.id] && (
                   <div className="flex flex-wrap gap-2 mb-2">
                     {layerLegends[layer.id].map((legend, index) => (
                       <div key={index} className="flex items-center gap-1 text-xs">
@@ -103,7 +103,7 @@ export default function LayersPanel({ layers, onLayerToggle, onOpacityChange }) 
                       </div>
                     ))}
                   </div>
-                )}
+                )} */}
               </div>
 
               {/* Opacity Slider - Compact, only when visible */}
