@@ -35,6 +35,7 @@ export default function LoginPage({ onLogin }) {
           {/* Login Form */}
           <form onSubmit={handleSubmit} className="space-y-6">
             <TextField
+            style={{marginBottom:'25px'}}
               id="username"
               label="Username"
               type="text"
@@ -47,6 +48,7 @@ export default function LoginPage({ onLogin }) {
             />
 
             <TextField
+             style={{marginBottom:'25px'}}
               id="password"
               label="Password"
               type="password"

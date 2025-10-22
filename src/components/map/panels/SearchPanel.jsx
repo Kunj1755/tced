@@ -101,7 +101,7 @@ export default function SearchPanel({ onSearchResults }) {
       </p>
 
       <div className="flex-1 overflow-y-auto space-y-4">
-        <FormControl fullWidth size="small">
+        <FormControl fullWidth size="small"  style={{marginBottom:'25px',marginTop:'10px'}}>
           <InputLabel id="search-layer-label">Layer</InputLabel>
           <Select
             labelId="search-layer-label"
@@ -117,7 +117,7 @@ export default function SearchPanel({ onSearchResults }) {
         </FormControl>
 
         {selectedLayer && (
-          <FormControl fullWidth size="small">
+          <FormControl fullWidth size="small" style={{marginBottom:'25px'}}>
             <InputLabel id="search-attribute-label">Attribute</InputLabel>
             <Select
               labelId="search-attribute-label"
@@ -136,7 +136,7 @@ export default function SearchPanel({ onSearchResults }) {
         {selectedAttribute && (
           <>
             {predefinedValues[selectedAttribute] && (
-              <FormControl fullWidth size="small">
+              <FormControl fullWidth size="small" style={{marginBottom:'25px'}}>
                 <InputLabel id="search-value-label">Value (Select)</InputLabel>
                 <Select
                   labelId="search-value-label"
@@ -168,6 +168,7 @@ export default function SearchPanel({ onSearchResults }) {
               InputLabelProps={{
                 shrink: true,
               }}
+              style={{marginBottom:'25px'}}
             />
           </>
         )}

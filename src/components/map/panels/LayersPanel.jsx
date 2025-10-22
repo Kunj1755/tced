@@ -23,11 +23,6 @@ const layerLegends = {
     { color: '#f59e0b', symbol: '⬤', label: 'Active' },
     { color: '#dc2626', symbol: '⬤', label: 'Inactive' },
     { color: '#f59e0b', symbol: '⬤', label: 'Active' },
-    { color: '#dc2626', symbol: '⬤', label: 'Inactive' },
-    { color: '#f59e0b', symbol: '⬤', label: 'Active' },
-    { color: '#dc2626', symbol: '⬤', label: 'Inactive' },
-    { color: '#f59e0b', symbol: '⬤', label: 'Active' },
-    { color: '#dc2626', symbol: '⬤', label: 'Inactive' },
   ],
   2: [
     { color: '#dc2626', symbol: '━', label: '11 KV' },

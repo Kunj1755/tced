@@ -176,6 +176,7 @@ export default function EditPanel({ selectedFeature, onFeatureSelect }) {
         {attributes.featureId && (
           <>
             <TextField
+            style={{marginBottom:'25px',marginTop: '10px'}}
               label="Feature ID"
               InputLabelProps={{
                 shrink: true,
@@ -187,6 +188,7 @@ export default function EditPanel({ selectedFeature, onFeatureSelect }) {
             />
 
             <TextField
+            style={{marginBottom:'25px'}}
               label="Name"
               InputLabelProps={{
                 shrink: true,
@@ -198,6 +200,7 @@ export default function EditPanel({ selectedFeature, onFeatureSelect }) {
             />
 
             <TextField
+            style={{marginBottom:'25px'}}
               label="Type"
               InputLabelProps={{
                 shrink: true,
@@ -209,6 +212,7 @@ export default function EditPanel({ selectedFeature, onFeatureSelect }) {
             />
 
             <TextField
+            style={{marginBottom:'25px'}}
               label="Capacity"
               InputLabelProps={{
                 shrink: true,
@@ -220,6 +224,7 @@ export default function EditPanel({ selectedFeature, onFeatureSelect }) {
             />
 
             <TextField
+            style={{marginBottom:'25px'}}
               label="Voltage"
               InputLabelProps={{
                 shrink: true,
@@ -231,6 +236,7 @@ export default function EditPanel({ selectedFeature, onFeatureSelect }) {
             />
 
             <TextField
+            style={{marginBottom:'25px'}}
               label="Location"
               InputLabelProps={{
                 shrink: true,
@@ -242,6 +248,7 @@ export default function EditPanel({ selectedFeature, onFeatureSelect }) {
             />
 
             <TextField
+            style={{marginBottom:'25px'}}
               label="Status"
               InputLabelProps={{
                 shrink: true,
@@ -253,6 +260,7 @@ export default function EditPanel({ selectedFeature, onFeatureSelect }) {
             />
 
             <TextField
+            style={{marginBottom:'25px'}}
               label="Notes"
               InputLabelProps={{
                 shrink: true,

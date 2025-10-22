@@ -43,6 +43,7 @@ export default function PrintPanel() {
 
       <div className="flex-1 overflow-y-auto space-y-4">
         <TextField
+        style={{marginBottom:'25px', marginTop:'10px'}}
           label="Map Title *"
           InputLabelProps={{
             // ← ADDED
@@ -58,7 +59,7 @@ export default function PrintPanel() {
           helperText={!title ? 'Title is required' : ''}
         />
 
-        <FormControl fullWidth size="small">
+        <FormControl fullWidth size="small" style={{marginBottom:'25px'}}>
           <InputLabel id="paper-size-label">Paper Size</InputLabel>
           <Select
             labelId="paper-size-label"
@@ -73,7 +74,7 @@ export default function PrintPanel() {
           </Select>
         </FormControl>
 
-        <FormControl fullWidth size="small">
+        <FormControl fullWidth size="small" style={{marginBottom:'25px'}}>
           <InputLabel id="format-label">Output Format</InputLabel>
           <Select
             labelId="format-label"

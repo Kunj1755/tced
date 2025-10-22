@@ -38,7 +38,7 @@ export default function MapHeader({ onLogout }) {
         <img
           src={'/company_logo.png'}
           alt="Thrissur Corporation Electricity Department"
-          className="h-10 sm:h-11 w-auto drop-shadow-lg"
+          className="h-12 sm:h-11 w-auto drop-shadow-lg"
         />
         <div className="border-l border-white/40 h-8 sm:h-10 mx-1 sm:mx-2" />
         <div>
