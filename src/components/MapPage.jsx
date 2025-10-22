@@ -94,10 +94,10 @@ export default function MapPage({ onLogout }) {
         );
       case 'search':
         return <SearchPanel onSearchResults={setSearchResults} />;
-      case 'edit':
-        return <EditPanel />;
-      case 'draw':
-        return <DrawPanel activeDrawTool={activeDrawTool} onDrawToolChange={setActiveDrawTool} />;
+      // case 'edit':
+      //   return <EditPanel />;
+      // case 'draw':
+      //   return <DrawPanel activeDrawTool={activeDrawTool} onDrawToolChange={setActiveDrawTool} />;
       case 'export':
         return <ExportPanel />;
       case 'print':

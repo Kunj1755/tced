@@ -7,8 +7,8 @@ const tools = [
   { id: 'layers', icon: Layers, label: 'Layers' },
   { id: 'basemaps', icon: Map, label: 'Basemaps' },
   { id: 'search', icon: Search, label: 'Search' },
-  { id: 'edit', icon: Edit, label: 'Edit' },
-  { id: 'draw', icon: PenTool, label: 'Draw' },
+  // { id: 'edit', icon: Edit, label: 'Edit' },
+  // { id: 'draw', icon: PenTool, label: 'Draw' },
   { id: 'export', icon: Download, label: 'Export' },
   { id: 'print', icon: Printer, label: 'Print' },
 ];
